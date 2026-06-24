@@ -44,6 +44,13 @@ const programs = [
       • Additional relevant fields: Agriculture, Engineering, Economics, Environmental Sciences, Sociology, Psychology, and more.
     `,
   },
+  {
+    title: "ELDERLY CARE GIVERS AND NURSES",
+    duration: "6 months diploma",
+    eligibility: `
+      deals training of ourseas employment of pakistani student + IHCMD recently joined venture with ICHIBAN NIHONGO INSTITUTE ISLAMABAD for which IHCMD provide Elderly care giver and nurses to government of japan
+    `,
+  },
 ];
 
 const DiplomaPrograms = () => {

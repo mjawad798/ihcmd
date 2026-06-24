@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import ExportedImage from "next-image-export-optimizer";
 
 export default function AboutUs() {
   return (
@@ -15,18 +16,18 @@ export default function AboutUs() {
           </p>
         </div>
 
-        <div className="mt-10 bg-white p-8 rounded-lg shadow-md">
+        <div className="mt-10 bg-white p-8 shadow-md">
           {/* Content Section */}
           <div className="flex flex-col md:flex-row gap-12 items-center">
             {/* Image Section */}
             <div className="w-full md:w-1/2 relative h-[24vh] md:h-[25vw]">
-              <Image
+              <ExportedImage
                 src="/irmHospital.jpg"
                 alt="Institute of Health Care Management and Development"
                 fill
                 sizes="(max-width: 768px) 100vw, 50vw"
                 quality={80}
-                className="rounded-lg shadow-lg object-cover"
+                className=" shadow-lg object-cover"
               />
             </div>
 
@@ -47,7 +48,7 @@ export default function AboutUs() {
               {/* CTA Button */}
               <div className="mt-6">
                 <Link href="/about">
-                  <p className="inline-block px-8 py-3 text-white bg-blue-700 rounded-lg shadow-lg font-medium hover:bg-gradient-to-tr from-blue-800 to-blue-950 transition">
+                  <p className="inline-block px-8 py-3 text-white bg-blue-700 shadow-lg font-medium hover:bg-gradient-to-tr from-blue-800 to-blue-950 transition">
                     Learn More About Us
                   </p>
                 </Link>
@@ -57,7 +58,7 @@ export default function AboutUs() {
 
           {/* Additional Info Section */}
           <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="bg-gray-50 p-6 rounded-lg shadow">
+            <div className="bg-gray-50 p-6 shadow">
               <h4 className="text-xl font-bold text-gray-800 mb-3">
                 Our Vision
               </h4>
@@ -67,7 +68,7 @@ export default function AboutUs() {
                 innovative solutions in the health sector.
               </p>
             </div>
-            <div className="bg-gray-50 p-6 rounded-lg shadow">
+            <div className="bg-gray-50 p-6 shadow">
               <h4 className="text-xl font-bold text-gray-800 mb-3">
                 Our Mission
               </h4>

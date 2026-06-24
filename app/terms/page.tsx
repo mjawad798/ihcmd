@@ -120,7 +120,7 @@ const TermsOfService = () => {
             </p>
             <address className="text-gray-700 mt-4">
               Institute of Health Care Management and Development (IHCMD) <br />
-              Email: <a href="mailto:admissions.ihcmdpesh@gmail.com" className="text-blue-800 underline">admissions.ihcmdpesh@gmail.com</a> <br />
+              Email: <a href="mailto:ihcmd.hsa.edu.pk@gmail.com" className="text-blue-800 underline">ihcmd.hsa.edu.pk@gmail.com</a> <br />
               Phone: 03009015804
             </address>
           </div>

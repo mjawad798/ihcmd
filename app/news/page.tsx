@@ -1,30 +1,70 @@
 "use client"
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import gsap from 'gsap';
-import Image from 'next/image';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import ExportedImage from "next-image-export-optimizer";import { ChevronLeft, ChevronRight } from 'lucide-react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 
 const NewsPage = () => {
 
-    const galleryItems = [
-        {
-            image: "/meeting.jpg",
-            title: " MoU Signing Ceremony between Rahim Medical Center & General Hospital and IHMS",
-            description: "The MoU signing between Rahim Medical Center, General Hospital, and IHMS marks a significant milestone in healthcare education.This partnership enhances collaboration and ultrasound training through Six-Month and One-Year Diploma programs.Rahim Medical Center and General Hospital are committed to high-quality education and hands-on training, preparing students for global healthcare contributions.For more information or to enroll in the ultrasound programs, contact 📞 0334-9281219"
-        },
-        {
-            image: "/meeting2.jpg",
-            title: "Guest Lecture Series with High Government Officials",
-            description: "Institute of Health Care Management & Development Islamabad Heartly welcome  on nomination high Govt: Officials as member of  IHCMD-Isld Board of Governors on first BOG's meeting.The meeting led by nominated Chairman BOGs  Dr. Zeeshan Ahmad (Chair BOGs) and breifly presentation has been given by Mr.Khalid Siddiqui  Director IHCMD-Isld (Secretary BOGs).The honorable board members shows satisfaction upon performance of institute and passed resolution to  continue provision of support in best interest of institute regarding managerial & academic concensis."
-        },
-        {
-            image: "/meeting3.jpg",
-            title: "Successful Inspection for FSc Medical Technology Program",
-            description: "Institute of Health Care Management & Development Islamabad has successfully received inspection from the Private Educational Institute Regulatory Authority (PEIRA) for Fsc Medical Technology. Honorable Secretary PEIRA led the inspection along with his team of professionals and found it satisfactory. They also visited IHCMD's own hospital, IRM-Hospital Islamabad. The inspection team appreciated Dr. Zeeshan Ahmad (MD) & Mr. Khalid Siddiqui (Director) for their professional work in introducing a new concept to offer fully hospital-based FSc Medical Technology in Islamabad, which will be very beneficial for boys & girls to take admission in IHCMD-Islamabad."
-        }
-    ];
+   // Testimonial data
+   const galleryItems = [
+    {
+        "image": "/img- (5).jpg",
+        "title": "Federal Board Inspection Success for FSc Medical Technology Program",
+        "description": "Alhamdulillah! We are proud to announce the successful completion of the Federal Board of Intermediate and Secondary Education inspection for our F.Sc Medical Technology Program. Special thanks to IRM for their unwavering support in achieving this milestone."
+      },
+      {
+        "image": "/img- (6).jpg",
+        "title": "Federal Board Inspection Success for FSc Medical Technology Program",
+        "description": "The Federal Board inspection team conducted a thorough review of our advanced laboratory facilities and cutting-edge equipment, commending us for meeting the highest standards of educational excellence."
+      },
+      {
+        "image": "/img- (7).jpg",
+        "title": "Federal Board Inspection Success for FSc Medical Technology Program",
+        "description": "Our dedicated faculty members showcased the innovative practical training methodologies that form the backbone of our FSc Medical Technology program, earning praise from the inspection team."
+      },
+      {
+        "image": "/img- (8).jpg",
+        "title": "Federal Board Inspection Success for FSc Medical Technology Program",
+        "description": "The inspection committee meticulously reviewed our curriculum and teaching materials, expressing their satisfaction with our comprehensive and student-focused approach to medical education."
+      },
+      {
+        "image": "/img- (1).jpg",
+        "title": "Federal Board Inspection Success for FSc Medical Technology Program",
+        "description": "Our talented students demonstrated their exceptional practical skills and in-depth knowledge during the inspection, highlighting the effectiveness of our training programs."
+      },
+      {
+        "image": "/img- (2).jpg",
+        "title": "Federal Board Inspection Success for FSc Medical Technology Program",
+        "description": "The inspection team toured our state-of-the-art medical laboratories and training facilities, acknowledging the advanced infrastructure that supports our students' learning journey."
+      },
+      {
+        "image": "/img- (3).jpg",
+        "title": "Federal Board Inspection Success for FSc Medical Technology Program",
+        "description": "Our administrative team presented detailed documentation and compliance records to the Federal Board inspection committee, showcasing our commitment to transparency and excellence."
+      },
+      {
+        "image": "/img- (4).jpg",
+        "title": "Federal Board Inspection Success for FSc Medical Technology Program",
+        "description": "This successful inspection is a testament to our institution's dedication to providing world-class medical education and marks a significant step forward in our mission to shape the future of healthcare professionals."
+      },
+      {
+        image: "/meeting.jpg",
+        title: " MoU Signing Ceremony between Rahim Medical Center & General Hospital and IHMS",
+        description: "The MoU signing between Rahim Medical Center, General Hospital, and IHMS marks a significant milestone in healthcare education.This partnership enhances collaboration and ultrasound training through Six-Month and One-Year Diploma programs.Rahim Medical Center and General Hospital are committed to high-quality education and hands-on training, preparing students for global healthcare contributions.For more information or to enroll in the ultrasound programs, contact 📞 0334-9281219"
+    },
+    {
+        image: "/meeting2.jpg",
+        title: "Guest Lecture Series with High Government Officials",
+        description: "Institute of Health Care Management & Development Islamabad Heartly welcome  on nomination high Govt: Officials as member of  IHCMD-Isld Board of Governors on first BOG's meeting.The meeting led by nominated Chairman BOGs  Dr. Zeeshan Ahmad (Chair BOGs) and breifly presentation has been given by Mr.Khalid Siddiqui  Director IHCMD-Isld (Secretary BOGs).The honorable board members shows satisfaction upon performance of institute and passed resolution to  continue provision of support in best interest of institute regarding managerial & academic concensis."
+    },
+    {
+        image: "/meeting3.jpg",
+        title: "Successful Inspection for FSc Medical Technology Program",
+        description: "Institute of Health Care Management & Development Islamabad has successfully received inspection from the Private Educational Institute Regulatory Authority (PEIRA) for Fsc Medical Technology. Honorable Secretary PEIRA led the inspection along with his team of professionals and found it satisfactory. They also visited IHCMD's own hospital, IRM-Hospital Islamabad. The inspection team appreciated Dr. Zeeshan Ahmad (MD) & Mr. Khalid Siddiqui (Director) for their professional work in introducing a new concept to offer fully hospital-based FSc Medical Technology in Islamabad, which will be very beneficial for boys & girls to take admission in IHCMD-Islamabad."
+    }
+];
 
     const [currentIndex, setCurrentIndex] = useState(0);
     const intervalRef = useRef<NodeJS.Timeout | null>(null);
@@ -108,43 +148,117 @@ const NewsPage = () => {
   return (
     <>
     <div className="bg-gray-100 md:pt-10 pb-10">
-        <div className="max-w-7xl mx-auto p-8 rounded-lg">
-            <h1 className="text-3xl font-bold text-blue-900 mb-6 text-center">
-                Latest Updates
-            </h1>
+    <div className="max-w-7xl mx-auto p-8 rounded-lg">
+        <h1 className="text-3xl font-bold text-blue-900 mb-6 text-center">
+            Why Choose Us?
+        </h1>
+        <p className="text-center text-lg text-gray-700 mb-10">
+            Discover what sets us apart and how we empower our students to achieve their goals in healthcare and beyond.
+        </p>
 
-            <div className="text-gray-700 text-center mb-6">
-                <p className="text-xl">
-                    Stay tuned for the latest updates and highlights from the Institute of Healthcare Management And Development.
-                    Don&apos;t miss our online session on May 10, 2023, focusing on mental health awareness and resources.
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {/* Feature 1 */}
+            <div className="bg-white p-6 rounded-lg shadow-md text-center">
+                <div className="mb-4">
+                    <svg
+                        className="w-12 h-12 text-blue-600 mx-auto"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                    >
+                        <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth="2"
+                            d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                        />
+                    </svg>
+                </div>
+                <h3 className="text-xl font-semibold text-blue-800">Industry-Leading Curriculum</h3>
+                <p className="text-gray-600 mt-4">
+                    Our courses are designed by healthcare professionals, ensuring you're learning the most up-to-date practices.
                 </p>
             </div>
 
-            {/* Upcoming Events Section */}
-            <div className="bg-white p-4 rounded-lg shadow-md mb-8">
-                <h2 className="text-xl font-semibold text-blue-800 text-center">Upcoming Events</h2>
-                <ul className="list-disc list-inside text-gray-600 mt-4 text-lg">
-                    <li>
-                        <strong>Healthcare Innovation Conference:</strong> Join us on March 15, 2023, for a day of insightful discussions and networking.
-                    </li>
-                    <li>
-                        <strong>Annual Health Fair:</strong> Mark your calendars for April 20, 2023, to participate in health screenings and educational workshops.
-                    </li>
-                    <li>
-                        <strong>Webinar on Mental Health:</strong> Don't miss our online session on May 10, 2023, focusing on mental health awareness and resources.
-                    </li>
-                </ul>
+            {/* Feature 2 */}
+            <div className="bg-white p-6 rounded-lg shadow-md text-center">
+                <div className="mb-4">
+                    <svg
+                        className="w-12 h-12 text-blue-600 mx-auto"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                    >
+                        <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth="2"
+                            d="M13 10V3L4 14h7v7l9-11h-7z"
+                        />
+                    </svg>
+                </div>
+                <h3 className="text-xl font-semibold text-blue-800">Hands-On Training</h3>
+                <p className="text-gray-600 mt-4">
+                    Gain practical experience through working in hospitals like IRM Hospital, where you will collaborate with healthcare professionals and apply your skills in real-world situations.
+                </p>
             </div>
 
-            <div className="mt-6 text-center">
-                <Button className='bg-blue-600 text-white hover:bg-gradient-to-r from-blue-800 to-blue-900'>
-                <Link href='/contact'>
-                    Get In Touch For Further inquiries
-                </Link>
-                </Button>
+            {/* Feature 3 */}
+            <div className="bg-white p-6 rounded-lg shadow-md text-center">
+                <div className="mb-4">
+                    <svg
+                        className="w-12 h-12 text-blue-600 mx-auto"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                    >
+                        <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth="2"
+                            d="M3 10h11M9 21l6-6-6-6"
+                        />
+                    </svg>
+                </div>
+                <h3 className="text-xl font-semibold text-blue-800">Career Advancement</h3>
+                <p className="text-gray-600 mt-4">
+                    Benefit from our strong industry connections to land internships and jobs in top healthcare organizations.
+                </p>
             </div>
+
+            {/* Feature 4 */}
+            <div className="bg-white p-6 rounded-lg shadow-md text-center">
+                <div className="mb-4">
+                    <svg
+                        className="w-12 h-12 text-blue-600 mx-auto"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                    >
+                        <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth="2"
+                            d="M8 16l4-4 4 4m0-12a9 9 0 11-18 0 9 9 0 0118 0z"
+                        />
+                    </svg>
+                </div>
+                <h3 className="text-xl font-semibold text-blue-800">Supportive Community</h3>
+                <p className="text-gray-600 mt-4">
+                    Join a network of passionate peers and mentors who are committed to your success.
+                </p>
+            </div>
+
+            
         </div>
     </div>
+</div>
+
+
 
     {/* Image Slider */}
     <div className="mt-12 relative max-w-7xl mx-auto px-5">
@@ -157,12 +271,11 @@ const NewsPage = () => {
                         ref={el => { imageRefs.current[index] = el }}
                         className={`absolute w-full h-full ${index === currentIndex ? 'opacity-100' : 'opacity-0'}`}
                     >
-                        <Image
+                        <ExportedImage
                             src={galleryItem.image}
                             alt={galleryItem.title}
                             fill
                             sizes="(max-width: 768px) 100vw, 50vw"
-                            quality={80}
                             className="object-cover rounded-xl"
                             priority={index === currentIndex}
                         />

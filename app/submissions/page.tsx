@@ -31,7 +31,7 @@ const Page = () => {
     e.preventDefault();
 
     const form = new FormData();
-    form.append("access_key", "fbef4513-9d82-417d-b774-884af7b2edff");
+    form.append("access_key", "262634eb-b946-437c-8eb8-a9fdee9d5d92");
 
     for (const [key, value] of Object.entries(formData)) {
       if (value) {

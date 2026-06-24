@@ -11,7 +11,7 @@ const Programs = () => {
             {/* Program Sections */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-7xl mx-auto px-6">
                 {/* Degree Programs */}
-                <div className="bg-white rounded-lg shadow-lg hover:shadow-xl transition duration-300 p-6">
+                <div className="bg-white shadow-lg hover:shadow-xl transition duration-300 p-6">
                     <h3 className="text-xl font-semibold text-blue-600 border-b-2 border-blue-600 pb-3 mb-4">
                         Degree Programs
                     </h3>
@@ -24,14 +24,14 @@ const Programs = () => {
                     </ul>
                     <Link
                         href="/degree"
-                        className="inline-block text-indigo-700 bg-indigo-50 hover:bg-gradient-to-r hover:from-blue-900 hover:to-blue-700 hover:text-white border border-indigo-200 rounded-lg shadow-sm hover:shadow-md transition-all duration-500 p-2 mt-4 ease-in-out"
+                        className="inline-block text-indigo-700 bg-indigo-50 hover:bg-gradient-to-r hover:from-blue-900 hover:to-blue-700 hover:text-white border border-indigo-200 shadow-sm hover:shadow-md transition-all duration-500 p-2 mt-4 ease-in-out"
                     >
                         Learn More About Degree Programs
                     </Link>
                 </div>
 
                 {/* Diploma Programs */}
-                <div className="bg-white rounded-lg shadow-lg hover:shadow-xl transition duration-300 p-6">
+                <div className="bg-white shadow-lg hover:shadow-xl transition duration-300 p-6">
                     <h3 className="text-xl font-semibold text-blue-600 border-b-2 border-blue-600 pb-3 mb-4">
                         Post Graduate Diploma Programs
                     </h3>
@@ -44,14 +44,14 @@ const Programs = () => {
                     </ul>
                     <Link
                         href="/diploma"
-                        className="inline-block text-indigo-700 bg-indigo-50 hover:bg-gradient-to-r hover:from-blue-900 hover:to-blue-700 hover:text-white border border-indigo-200 rounded-lg shadow-sm hover:shadow-md transition-all duration-500 p-2 mt-4 ease-in-out"
+                        className="inline-block text-indigo-700 bg-indigo-50 hover:bg-gradient-to-r hover:from-blue-900 hover:to-blue-700 hover:text-white border border-indigo-200 shadow-sm hover:shadow-md transition-all duration-500 p-2 mt-4 ease-in-out"
                     >
                         Learn More About Post Graduate Diploma Programs
                     </Link>
                 </div>
 
                 {/* Certificate Programs */}
-                <div className="bg-white rounded-lg shadow-lg hover:shadow-xl transition duration-300 p-6">
+                <div className="bg-white shadow-lg hover:shadow-xl transition duration-300 p-6">
                     <h3 className="text-xl font-semibold text-blue-600 border-b-2 border-blue-600 pb-3 mb-4">
                         Certificate Programs
                     </h3>
@@ -64,14 +64,14 @@ const Programs = () => {
                     </ul>
                     <Link
                         href="/certificate"
-                        className="inline-block text-indigo-700 bg-indigo-50 hover:bg-gradient-to-r hover:from-blue-900 hover:to-blue-700 hover:text-white border border-indigo-200 rounded-lg shadow-sm hover:shadow-md transition-all duration-500 p-2 mt-4 ease-in-out"
+                        className="inline-block text-indigo-700 bg-indigo-50 hover:bg-gradient-to-r hover:from-blue-900 hover:to-blue-700 hover:text-white border border-indigo-200 shadow-sm hover:shadow-md transition-all duration-500 p-2 mt-4 ease-in-out"
                     >
                         Learn More About Certificate Programs
                     </Link>
                 </div>
 
                 {/* FCS Medical Technologies */}
-                <div className="bg-white rounded-lg shadow-lg hover:shadow-xl transition duration-300 p-6">
+                <div className="bg-white shadow-lg hover:shadow-xl transition duration-300 p-6">
                     <h3 className="text-xl font-semibold text-blue-600 border-b-2 border-blue-600 pb-3 mb-4">
                         FCS Medical Technologies
                     </h3>
@@ -87,7 +87,7 @@ const Programs = () => {
                     </ul>
                     <Link
                         href="/fsc"
-                        className="inline-block text-indigo-700 bg-indigo-50 hover:bg-gradient-to-r hover:from-blue-900 hover:to-blue-700 hover:text-white border border-indigo-200 rounded-lg shadow-sm hover:shadow-md transition-all duration-500 p-2 mt-4 ease-in-out"
+                        className="inline-block text-indigo-700 bg-indigo-50 hover:bg-gradient-to-r hover:from-blue-900 hover:to-blue-700 hover:text-white border border-indigo-200 shadow-sm hover:shadow-md transition-all duration-500 p-2 mt-4 ease-in-out"
                     >
                         Learn More About FCS Medical Technologies
                     </Link>

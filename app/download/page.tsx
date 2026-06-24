@@ -32,7 +32,7 @@ const notesData = [
   },
   {
     title: "PG DDM Curriculum",
-    file: "/pdf/PG-DDM-Curriculam.pdf",
+    file: "/pdf/PG-Diploma in Disaster Management.pdf",
   },
   {
     title: "PGD PH",
@@ -53,6 +53,10 @@ const notesData = [
   {
     title: "PDD Food Safety and Control",
     file: "/pdf/PDD-FoodSsfety-and-Control-.pdf",
+  },
+  {
+    title: "PG-Diploma in Climate Change",
+    file: "/pdf/PG-Diploma in Climate Change.pdf",
   },
 ];
 

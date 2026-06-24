@@ -42,6 +42,13 @@ const programs = [
     description:
       "Master the skills required to efficiently manage operation theatres, including staff coordination, surgical scheduling, and equipment optimization.",
   },
+  {
+    title: "Certificate in Elderly care givers and nurses",
+    duration: "03 Months",
+    eligibility: `
+      deals training of ourseas employment of pakistani student + IHCMD recently joined venture with ICHIBAN NIHONGO INSTITUTE ISLAMABAD for which IHCMD provide Elderly care giver and nurses to government of japan
+    `,
+  },
 ];
 
 const CertificatePrograms = () => {

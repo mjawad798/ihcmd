@@ -1,7 +1,7 @@
 "use client"
 import React, { useState, useEffect, useRef } from 'react';
 import gsap from 'gsap';
-import Image from 'next/image';
+import ExportedImage from 'next-image-export-optimizer';
 import Link from 'next/link';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
@@ -120,12 +120,12 @@ const HeroSection = () => {
                 {/* Action Buttons */}
                 <div className="flex space-x-4 mt-6">
                     <Link href="#programs">
-                        <p className="bg-blue-600 text-white px-6 py-3 rounded-lg shadow-lg hover:bg-gradient-to-tr from-blue-800 to-blue-950 transition-all">
+                        <p className="bg-blue-600 text-white px-6 py-3 shadow-lg hover:bg-gradient-to-tr from-blue-800 to-blue-950 transition-all">
                             Explore Programs
                         </p>
                     </Link>
                     <Link href="/submissions">
-                        <p className="bg-amber-700 text-white px-6 py-3 rounded-lg shadow-lg hover:bg-gradient-to-tr from-amber-800 to-amber-950 transition-all">
+                        <p className="bg-amber-700 text-white px-6 py-3 shadow-lg hover:bg-gradient-to-tr from-amber-800 to-amber-950 transition-all">
                             Apply Now
                         </p>
                     </Link>
@@ -137,7 +137,7 @@ const HeroSection = () => {
                 <div className="mt-12 relative max-w-7xl">
                     <div className="flex flex-col md:flex-row gap-8">
                         {/* Image Slider */}
-                        <div className="relative h-[300px] md:h-[400px] md:w-1/2 w-full overflow-hidden rounded-xl">
+                        <div className="relative h-[300px] md:h-[400px] md:w-1/2 w-full overflow-hidden">
                             {galleryItems.map((galleryItem, index) => (
                                 <div
                                     key={index}
@@ -145,13 +145,13 @@ const HeroSection = () => {
                                     className={`absolute w-full h-full ${index === currentIndex ? 'opacity-100' : 'opacity-0'
                                         }`}
                                 >
-                                    <Image
+                                    <ExportedImage
                                         src={galleryItem.image}
                                         alt={galleryItem.title}
                                         fill
                                         sizes="(max-width: 768px) 100vw, 50vw"
                                         quality={80}
-                                        className="object-cover rounded-xl"
+                                        className="object-cover"
                                         priority={index === currentIndex}
                                     />
                                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
@@ -161,13 +161,13 @@ const HeroSection = () => {
                             {/* Navigation Buttons */}
                             <button
                                 onClick={() => handleManualNavigation('prev')}
-                                className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/80 dark:bg-gray-800/80 p-2 rounded-full hover:bg-white dark:hover:bg-gray-800 transition-all duration-200"
+                                className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/80 dark:bg-gray-800/80 p-2 hover:bg-white dark:hover:bg-gray-800 transition-all duration-200"
                             >
                                 <ChevronLeft className="w-6 h-6 text-gray-800 dark:text-white" />
                             </button>
                             <button
                                 onClick={() => handleManualNavigation('next')}
-                                className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/80 dark:bg-gray-800/80 p-2 rounded-full hover:bg-white dark:hover:bg-gray-800 transition-all duration-200"
+                                className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/80 dark:bg-gray-800/80 p-2 hover:bg-white dark:hover:bg-gray-800 transition-all duration-200"
                             >
                                 <ChevronRight className="w-6 h-6 text-gray-800 dark:text-white" />
                             </button>
@@ -186,7 +186,7 @@ const HeroSection = () => {
                                                 intervalRef.current = setInterval(() => animateSlide('next'), 5000);
                                             }
                                         }}
-                                        className={`w-2 h-2 rounded-full transition-all duration-200 ${index === currentIndex
+                                        className={`w-2 h-2 transition-all duration-200 ${index === currentIndex
                                             ? 'bg-white w-4'
                                             : 'bg-white/50 hover:bg-white/80'
                                             }`}
@@ -196,7 +196,7 @@ const HeroSection = () => {
                         </div>
 
                         {/* Testimonial Text */}
-                        <div className="md:w-1/2 bg-blue-50 flex flex-col justify-center items-center dark:bg-blue-900/30 p-8 rounded-xl">
+                        <div className="md:w-1/2 bg-blue-50 flex flex-col justify-center items-center dark:bg-blue-900/30 p-8">
                             <blockquote className="text-center">
                                 <p
                                     ref={textRef}
@@ -225,14 +225,14 @@ const HeroSection = () => {
                         <div className="mt-12 flex flex-col md:flex-row items-center md:gap-8 gap-12">
                             {/* Hospital Image */}
                             <div className="relative w-full md:w-1/2 flex justify-center">
-                                <Image
+                                <ExportedImage
                                     src="/hospital.jpg"
                                     alt="IRM Hospital"
                                     width={600}
                                     height={600}
-                                    className="rounded-lg shadow-lg object-cover transform hover:scale-105 transition-transform duration-300"
+                                    className=" shadow-lg object-cover transform hover:scale-105 transition-transform duration-300"
                                 />
-                                <div className="absolute top-0 left-0 bg-blue-900/10 w-full h-full rounded-lg shadow-inner"></div>
+                                <div className="absolute top-0 left-0 bg-blue-900/10 w-full h-full shadow-inner"></div>
                             </div>
 
                             {/* Text Content */}
@@ -243,7 +243,7 @@ const HeroSection = () => {
 
                                 <div className="flex justify-center md:justify-start">
                                     <Link href="/about">
-                                        <p className="inline-block bg-blue-600 text-white text-sm font-medium rounded-lg px-6 py-3 shadow-md hover:shadow-lg hover:bg-gradient-to-tr from-blue-800 to-blue-950 transition duration-300">
+                                        <p className="inline-block bg-blue-600 text-white text-sm font-medium px-6 py-3 shadow-md hover:shadow-lg hover:bg-gradient-to-tr from-blue-800 to-blue-950 transition duration-300">
                                             Learn More
                                         </p>
                                     </Link>

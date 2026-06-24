@@ -52,8 +52,16 @@ const programs = [
       "Career Opportunities: Public Health Specialist, Health Educator, Policy Analyst",
     ],
   },
-  
-  
+  { 
+    title: " Bachelor of Cardiology",
+    description:
+   "Cardiologists specialize in managing conditions such as heart attacks, high blood pressure, arrhythmias, and heart failure.", 
+    details: [
+      "Duration: 4 Years",
+      "Key Skills: medical and technical skills, analytical skills, research amd continue learning",
+      "Career Opportunities: Heart Specialist, Medical professor and educator, Genetic Cardiologist",
+    ], 
+  }  
 ];
 
 const DegreePrograms = () => {
