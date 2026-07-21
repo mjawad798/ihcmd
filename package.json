@@ -17,7 +17,7 @@
     "@studio-freight/lenis": "^1.0.42",
     "@types/gsap": "^3.0.0",
     "bcryptjs": "^3.0.3",
-    "ckeditor5": "44.3.0",
+    "ckeditor5": "^48.3.1",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "gsap": "^3.12.5",
