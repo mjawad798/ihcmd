@@ -17,6 +17,12 @@
 /.next/
 /out/
 
+# admin-uploaded files — stored outside public/ so a redeploy never wipes
+# them; served via app/ihcmduploads/[...path] in dev, or Apache Alias in
+# production/local httpd.conf. Never committed, never touched by a
+# git-based deploy.
+/ihcmduploads/
+
 # production
 /build
 

@@ -71,5 +71,63 @@ body {
   }
   html {
     scroll-behavior: smooth;
+    /* The sticky navbar's height changes on scroll (top bar collapses).
+       Without this, the browser's scroll anchoring compensates for that
+       shift by silently adjusting scrollY, which flips the collapsed state
+       back and forth in a loop right around the scroll threshold. */
+    overflow-anchor: none;
   }
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.rich-content p {
+  margin-bottom: 1em;
+}
+.rich-content ul,
+.rich-content ol {
+  margin: 0 0 1em 1.5em;
+}
+.rich-content ul {
+  list-style: disc;
+}
+.rich-content ol {
+  list-style: decimal;
+}
+.rich-content li {
+  margin-bottom: 0.4em;
+}
+.rich-content h1,
+.rich-content h2,
+.rich-content h3,
+.rich-content h4 {
+  font-weight: 700;
+  color: #0b1b3d;
+  margin: 1em 0 0.5em;
+}
+.rich-content a {
+  color: #b8942b;
+  text-decoration: underline;
+}
+.rich-content strong {
+  font-weight: 700;
+}
+.rich-content blockquote {
+  border-left: 3px solid #d4af37;
+  padding-left: 1em;
+  color: #555;
+  font-style: italic;
+  margin: 1em 0;
+}
+
+/* CKEditor's classic build has no "rows" prop — its editing area height is
+   plain CSS, so this is how every admin form gets a ~5-row default. */
+.rich-text-editor .ck-editor__editable_inline {
+  min-height: 150px;
 }

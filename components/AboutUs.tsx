@@ -1,82 +1,57 @@
 import Link from "next/link";
-import Image from "next/image";
 import ExportedImage from "next-image-export-optimizer";
 
 export default function AboutUs() {
   return (
-    <section className="w-[100vw] bg-gray-100 py-12">
-      <div className="max-w-7xl mx-auto px-6">
-        {/* Title Section */}
-        <div className="text-center">
-          <h2 className="text-4xl font-bold text-blue-900 underline underline-offset-[6px] mb-6">
-            About IHCMD
-          </h2>
-          <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-            Discover how the Institute of Health Care Management and Development (IHCMD) is transforming healthcare education and research in Pakistan.
-          </p>
-        </div>
-
-        <div className="mt-10 bg-white p-8 shadow-md">
-          {/* Content Section */}
-          <div className="flex flex-col md:flex-row gap-12 items-center">
-            {/* Image Section */}
-            <div className="w-full md:w-1/2 relative h-[24vh] md:h-[25vw]">
+    <section className="w-full bg-white py-20 md:py-32">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        <div className="flex flex-col lg:flex-row gap-16 items-center">
+          {/* Image Column */}
+          <div className="w-full lg:w-1/2 relative group">
+            <div className="relative h-[400px] lg:h-[550px] w-full overflow-hidden shadow-2xl">
               <ExportedImage
                 src="/irmHospital.jpg"
                 alt="Institute of Health Care Management and Development"
                 fill
-                sizes="(max-width: 768px) 100vw, 50vw"
-                quality={80}
-                className=" shadow-lg object-cover"
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                className="object-cover transition-transform duration-700 group-hover:scale-105"
               />
+              <div className="absolute inset-0 bg-navy-900/10 transition-opacity duration-300 group-hover:opacity-0" />
             </div>
-
-
-
-            {/* Text Section */}
-            <div className="w-full md:w-1/2">
-              <p className="text-gray-700 leading-relaxed mb-4">
-                The Institute of Health Care Management and Development (IHCMD) is a leading private-sector postgraduate training institution focused on Health Management, Public Health, and Health Research, located on the 2nd and 3rd floors.
-              </p>
-              <p className="text-gray-700 leading-relaxed mb-4">
-                Through innovative operational research and evidence-based models, we aim to elevate healthcare services across KP. Our mission is to create sustainable solutions for healthcare challenges while fostering professional development in the field.
-              </p>
-              <p className="text-gray-700 leading-relaxed">
-                With a strong emphasis on Continued Professional Development (CPD), IHCMD empowers students and professionals through subsidized training programs, ensuring accessibility to all aspiring healthcare leaders.
-              </p>
-
-              {/* CTA Button */}
-              <div className="mt-6">
-                <Link href="/about">
-                  <p className="inline-block px-8 py-3 text-white bg-blue-700 shadow-lg font-medium hover:bg-gradient-to-tr from-blue-800 to-blue-950 transition">
-                    Learn More About Us
-                  </p>
-                </Link>
-              </div>
-            </div>
+            {/* Decorative elements to make the design pop */}
+            <div className="absolute -bottom-8 -right-8 w-48 h-48 bg-navy-900 -z-10" />
+            <div className="absolute -top-8 -left-8 w-32 h-32 bg-gold-500 -z-10" />
           </div>
 
-          {/* Additional Info Section */}
-          <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="bg-gray-50 p-6 shadow">
-              <h4 className="text-xl font-bold text-gray-800 mb-3">
-                Our Vision
-              </h4>
-              <p className="text-gray-600 leading-relaxed">
-                To become a premier institution in healthcare education and
-                research, setting benchmarks for academic excellence and
-                innovative solutions in the health sector.
-              </p>
+          {/* Text Column */}
+          <div className="w-full lg:w-1/2 space-y-8">
+            <div>
+              <span className="block text-sm font-bold tracking-widest text-gold-600 uppercase mb-3">
+                About IHCMD
+              </span>
+              <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-navy-900 leading-tight mb-6">
+                Transforming Healthcare Education in Pakistan
+              </h2>
+              
+              <div className="space-y-6 text-lg text-gray-600 font-light leading-relaxed">
+                <p>
+                  The Institute of Health Care Management and Development (IHCMD) is a leading private-sector postgraduate training institution focused on Health Management, Public Health, and Health Research.
+                </p>
+                <p>
+                  Through innovative operational research and evidence-based models, we aim to elevate healthcare services. Our mission is to create sustainable solutions for healthcare challenges while fostering professional development in the field.
+                </p>
+                <p>
+                  With a strong emphasis on Continued Professional Development (CPD), IHCMD empowers students and professionals through subsidized training programs, ensuring accessibility to all aspiring healthcare leaders.
+                </p>
+              </div>
             </div>
-            <div className="bg-gray-50 p-6 shadow">
-              <h4 className="text-xl font-bold text-gray-800 mb-3">
-                Our Mission
-              </h4>
-              <p className="text-gray-600 leading-relaxed">
-                To provide accessible, high-quality education and training in
-                healthcare management, research, and public health to shape the
-                next generation of healthcare leaders.
-              </p>
+
+            <div className="pt-4">
+              <Link href="/about">
+                <button className="px-10 py-4 bg-navy-900 hover:bg-navy-800 text-white font-semibold border border-gold-500/40 shadow-[0_10px_20px_rgba(11,27,61,0.25)] hover:shadow-[0_15px_30px_rgba(212,175,55,0.3)] transition-all duration-300 transform hover:-translate-y-1">
+                  Learn More About Us
+                </button>
+              </Link>
             </div>
           </div>
         </div>

@@ -1,9 +1,9 @@
-"use client";
-import React from 'react';
+import { getLatestFlashNews } from "@/lib/queries";
+import PopupClient from "@/components/PopupClient";
 
-const Popup = () => {
-    // Disabled auto-popup behavior
-    return null;
+const Popup = async () => {
+    const flashNews = await getLatestFlashNews();
+    return <PopupClient flashNews={flashNews} />;
 };
 
 export default Popup;

@@ -10,6 +10,32 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        gold: {
+          50: '#fffbf0',
+          100: '#fef3d1',
+          200: '#fce4a3',
+          300: '#fad16a',
+          400: '#f8ba32',
+          500: '#d4af37', // Classic Gold
+          600: '#b8942b',
+          700: '#91721e',
+          800: '#785d1d',
+          900: '#664d1c',
+          950: '#3a2a0d',
+        },
+        navy: {
+          50: '#eef1f8',
+          100: '#d3daed',
+          200: '#a7b6db',
+          300: '#7a91c8',
+          400: '#4e6db6',
+          500: '#33509a',
+          600: '#26407f',
+          700: '#1c3164',
+          800: '#132249',
+          900: '#0b1b3d', // Brand Navy
+          950: '#060f22',
+        },
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         card: {
@@ -58,6 +84,15 @@ const config: Config = {
       },
       screens: {
         xs: "400px",
+      },
+      keyframes: {
+        marquee: {
+          "0%": { transform: "translateX(0%)" },
+          "100%": { transform: "translateX(-50%)" },
+        },
+      },
+      animation: {
+        marquee: "marquee 30s linear infinite",
       },
     },
   },
