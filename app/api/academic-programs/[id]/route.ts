@@ -51,6 +51,7 @@ export async function PUT(request: NextRequest, { params }: Params) {
         name,
         description,
         picture: picturePath,
+        isOpenForAdmission: formData.get("isOpenForAdmission") === "true",
     });
 
     return NextResponse.json(program);

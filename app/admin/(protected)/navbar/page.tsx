@@ -7,6 +7,7 @@ type NavItemRow = {
     id: number;
     title: string;
     type: "direct" | "submenu";
+    placement: "main" | "topbar";
     link: string | null;
     parentId: number | null;
     displayOrder: number;
@@ -16,6 +17,7 @@ type NavItemRow = {
 const emptyForm = {
     title: "",
     type: "direct" as "direct" | "submenu",
+    placement: "main" as "main" | "topbar",
     link: "",
     parentId: "" as number | "",
     displayOrder: 0,
@@ -43,7 +45,9 @@ export default function NavbarAdminPage() {
         loadItems();
     }, []);
 
-    const parentOptions = items.filter((item) => item.type === "direct" && item.id !== editingId);
+    const parentOptions = items.filter(
+        (item) => item.type === "direct" && item.placement === "main" && item.id !== editingId
+    );
 
     const openCreateForm = () => {
         setEditingId(null);
@@ -57,6 +61,7 @@ export default function NavbarAdminPage() {
         setForm({
             title: item.title,
             type: item.type,
+            placement: item.placement ?? "main",
             link: item.link ?? "",
             parentId: item.parentId ?? "",
             displayOrder: item.displayOrder,
@@ -83,6 +88,7 @@ export default function NavbarAdminPage() {
             body: JSON.stringify({
                 title: form.title,
                 type: form.type,
+                placement: form.placement,
                 link: form.link || null,
                 parentId: form.type === "submenu" ? Number(form.parentId) : null,
                 displayOrder: form.displayOrder,
@@ -129,11 +135,13 @@ export default function NavbarAdminPage() {
                 <p className="text-center text-gray-400 py-10">You do not have permission to view this page.</p>
             ) : (
             <div className="bg-white rounded-xl border border-gray-200 overflow-hidden">
+                <div className="overflow-x-auto">
                 <table className="w-full text-sm">
                     <thead className="bg-gray-50 text-gray-500 uppercase text-xs">
                         <tr>
                             <th className="text-left px-4 py-3">Title</th>
                             <th className="text-left px-4 py-3">Type</th>
+                            <th className="text-left px-4 py-3">Placement</th>
                             <th className="text-left px-4 py-3">Parent</th>
                             <th className="text-left px-4 py-3">Link</th>
                             <th className="text-left px-4 py-3">Order</th>
@@ -143,14 +151,14 @@ export default function NavbarAdminPage() {
                     <tbody className="divide-y divide-gray-100">
                         {loading && (
                             <tr>
-                                <td colSpan={6} className="px-4 py-6 text-center text-gray-400">
+                                <td colSpan={7} className="px-4 py-6 text-center text-gray-400">
                                     Loading...
                                 </td>
                             </tr>
                         )}
                         {!loading && items.length === 0 && (
                             <tr>
-                                <td colSpan={6} className="px-4 py-6 text-center text-gray-400">
+                                <td colSpan={7} className="px-4 py-6 text-center text-gray-400">
                                     No navigation items yet.
                                 </td>
                             </tr>
@@ -165,6 +173,15 @@ export default function NavbarAdminPage() {
                                         }`}
                                     >
                                         {item.type}
+                                    </span>
+                                </td>
+                                <td className="px-4 py-3">
+                                    <span
+                                        className={`px-2 py-1 rounded-full text-xs font-semibold ${
+                                            item.placement === "topbar" ? "bg-emerald-50 text-emerald-700" : "bg-gray-100 text-gray-600"
+                                        }`}
+                                    >
+                                        {item.placement === "topbar" ? "top bar" : "main nav"}
                                     </span>
                                 </td>
                                 <td className="px-4 py-3 text-gray-500">{item.parent?.title ?? "—"}</td>
@@ -194,6 +211,7 @@ export default function NavbarAdminPage() {
                         ))}
                     </tbody>
                 </table>
+                </div>
             </div>
             )}
 
@@ -222,6 +240,31 @@ export default function NavbarAdminPage() {
                             </div>
 
                             <div>
+                                <span className="block text-sm font-medium text-gray-700 mb-1">Placement</span>
+                                <div className="flex items-center gap-4 py-1">
+                                    <label className="flex items-center gap-2 text-sm">
+                                        <input
+                                            type="radio"
+                                            name="placement"
+                                            checked={form.placement === "main"}
+                                            onChange={() => setForm({ ...form, placement: "main" })}
+                                        />
+                                        Main navigation
+                                    </label>
+                                    <label className="flex items-center gap-2 text-sm">
+                                        <input
+                                            type="radio"
+                                            name="placement"
+                                            checked={form.placement === "topbar"}
+                                            onChange={() => setForm({ ...form, placement: "topbar", type: "direct", parentId: "" })}
+                                        />
+                                        Top bar (right of header)
+                                    </label>
+                                </div>
+                            </div>
+
+                            {form.placement === "main" && (
+                            <div>
                                 <span className="block text-sm font-medium text-gray-700 mb-1">Type</span>
                                 <div className="flex items-center gap-4 py-1">
                                     <label className="flex items-center gap-2 text-sm">
@@ -244,8 +287,9 @@ export default function NavbarAdminPage() {
                                     </label>
                                 </div>
                             </div>
+                            )}
 
-                            {form.type === "submenu" && (
+                            {form.placement === "main" && form.type === "submenu" && (
                                 <div>
                                     <label className="block text-sm font-medium text-gray-700 mb-1">Parent</label>
                                     <select

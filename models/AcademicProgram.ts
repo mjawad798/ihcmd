@@ -19,6 +19,7 @@ export class AcademicProgram extends Model<
     declare name: string;
     declare description: string;
     declare picture: string | null;
+    declare isOpenForAdmission: CreationOptional<boolean>;
     declare createdAt: CreationOptional<Date>;
     declare updatedAt: CreationOptional<Date>;
 }
@@ -45,6 +46,11 @@ AcademicProgram.init(
         picture: {
             type: DataTypes.STRING(500),
             allowNull: true,
+        },
+        isOpenForAdmission: {
+            type: DataTypes.BOOLEAN,
+            allowNull: false,
+            defaultValue: false,
         },
         createdAt: DataTypes.DATE,
         updatedAt: DataTypes.DATE,

@@ -20,6 +20,8 @@ export const FORMS = [
     { key: "gallery", label: "Gallery" },
     { key: "flash-news", label: "Flash News" },
     { key: "downloads", label: "Downloads" },
+    { key: "admission-sessions", label: "Admission Sessions" },
+    { key: "admissions", label: "Admission Applications" },
     { key: "users", label: "Users" },
     { key: "roles", label: "Roles & Permissions" },
 ] as const;

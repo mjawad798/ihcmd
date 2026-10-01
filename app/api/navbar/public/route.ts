@@ -3,6 +3,7 @@ import NavItem from "@/models/NavItem";
 
 export async function GET() {
     const items = await NavItem.findAll({
+        where: { placement: "main" },
         order: [["displayOrder", "ASC"], ["id", "ASC"]],
     });
 

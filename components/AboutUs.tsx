@@ -1,7 +1,11 @@
 import Link from "next/link";
-import ExportedImage from "next-image-export-optimizer";
+import { getActiveAboutSections } from "@/lib/queries";
 
-export default function AboutUs() {
+export default async function AboutUs() {
+  const sections = await getActiveAboutSections();
+  const mission = sections.find((s) => s.type === "content" && s.title === "Our Mission");
+  const picture = mission?.picture || "/irmHospital.jpg";
+
   return (
     <section className="w-full bg-white py-20 md:py-32">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
@@ -9,12 +13,11 @@ export default function AboutUs() {
           {/* Image Column */}
           <div className="w-full lg:w-1/2 relative group">
             <div className="relative h-[400px] lg:h-[550px] w-full overflow-hidden shadow-2xl">
-              <ExportedImage
-                src="/irmHospital.jpg"
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={picture}
                 alt="Institute of Health Care Management and Development"
-                fill
-                sizes="(max-width: 1024px) 100vw, 50vw"
-                className="object-cover transition-transform duration-700 group-hover:scale-105"
+                className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-navy-900/10 transition-opacity duration-300 group-hover:opacity-0" />
             </div>

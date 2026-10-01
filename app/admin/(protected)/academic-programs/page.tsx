@@ -28,12 +28,14 @@ type AcademicProgramItem = {
     name: string;
     description: string;
     picture: string | null;
+    isOpenForAdmission: boolean;
 };
 
 const emptyForm = {
     type: PROGRAM_TYPES[0] as string,
     name: "",
     description: "",
+    isOpenForAdmission: false,
 };
 
 export default function AcademicProgramsAdminPage() {
@@ -83,6 +85,7 @@ export default function AcademicProgramsAdminPage() {
             type: program.type,
             name: program.name,
             description: program.description,
+            isOpenForAdmission: program.isOpenForAdmission,
         });
         setPictureFile(null);
         setPreviewUrl(program.picture);
@@ -135,6 +138,7 @@ export default function AcademicProgramsAdminPage() {
         fd.append("type", form.type);
         fd.append("name", form.name);
         fd.append("description", form.description);
+        fd.append("isOpenForAdmission", String(form.isOpenForAdmission));
         if (pictureFile) fd.append("picture", pictureFile);
         if (removePicture) fd.append("removePicture", "true");
 
@@ -179,26 +183,28 @@ export default function AcademicProgramsAdminPage() {
                 <p className="text-center text-gray-400 py-10">You do not have permission to view this page.</p>
             ) : (
             <div className="bg-white rounded-xl border border-gray-200 overflow-hidden">
+                <div className="overflow-x-auto">
                 <table className="w-full text-sm">
                     <thead className="bg-gray-50 text-gray-500 uppercase text-xs">
                         <tr>
                             <th className="text-left px-4 py-3">Picture</th>
                             <th className="text-left px-4 py-3">Name</th>
                             <th className="text-left px-4 py-3">Type</th>
+                            <th className="text-left px-4 py-3">Admission</th>
                             <th className="text-right px-4 py-3">Actions</th>
                         </tr>
                     </thead>
                     <tbody className="divide-y divide-gray-100">
                         {loading && (
                             <tr>
-                                <td colSpan={4} className="px-4 py-6 text-center text-gray-400">
+                                <td colSpan={5} className="px-4 py-6 text-center text-gray-400">
                                     Loading...
                                 </td>
                             </tr>
                         )}
                         {!loading && programs.length === 0 && (
                             <tr>
-                                <td colSpan={4} className="px-4 py-6 text-center text-gray-400">
+                                <td colSpan={5} className="px-4 py-6 text-center text-gray-400">
                                     No academic programs yet.
                                 </td>
                             </tr>
@@ -225,6 +231,15 @@ export default function AcademicProgramsAdminPage() {
                                     </span>
                                 </td>
                                 <td className="px-4 py-3">
+                                    <span
+                                        className={`px-2 py-1 rounded-full text-xs font-semibold ${
+                                            program.isOpenForAdmission ? "bg-green-50 text-green-700" : "bg-gray-100 text-gray-500"
+                                        }`}
+                                    >
+                                        {program.isOpenForAdmission ? "Open" : "Closed"}
+                                    </span>
+                                </td>
+                                <td className="px-4 py-3">
                                     <div className="flex justify-end gap-2">
                                         {perm.edit && (
                                             <button
@@ -248,6 +263,7 @@ export default function AcademicProgramsAdminPage() {
                         ))}
                     </tbody>
                 </table>
+                </div>
             </div>
             )}
 
@@ -290,6 +306,16 @@ export default function AcademicProgramsAdminPage() {
                                     className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-gold-400"
                                 />
                             </div>
+
+                            <label className="flex items-center gap-2 text-sm font-medium text-gray-700">
+                                <input
+                                    type="checkbox"
+                                    checked={form.isOpenForAdmission}
+                                    onChange={(e) => setForm({ ...form, isOpenForAdmission: e.target.checked })}
+                                    className="w-4 h-4"
+                                />
+                                Open for admission (shown on the Apply Now form)
+                            </label>
 
                             <div>
                                 <label className="block text-sm font-medium text-gray-700 mb-1">Description</label>

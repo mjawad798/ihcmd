@@ -6,6 +6,7 @@
 export const RESERVED_SLUGS = [
     "about",
     "academic-programs",
+    "apply-now",
     "document-verification",
     "download",
     "faculty",

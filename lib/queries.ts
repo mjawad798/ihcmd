@@ -14,13 +14,18 @@ import Affiliation from "@/models/Affiliation";
 import FooterSetting, { FOOTER_SETTINGS_ID } from "@/models/FooterSetting";
 import VerificationMaster from "@/models/VerificationMaster";
 import Section from "@/models/Section";
+import AdmissionSession from "@/models/AdmissionSession";
 import { FOOTER_DEFAULTS } from "@/lib/footerDefaults";
 
 export type NavChild = { id: number; title: string; link: string | null };
 export type NavNode = { id: number; title: string; link: string | null; children: NavChild[] };
+export type TopBarLink = { id: number; title: string; link: string | null };
 
 export const getNavTree = cache(async (): Promise<NavNode[]> => {
-    const items = await NavItem.findAll({ order: [["displayOrder", "ASC"], ["id", "ASC"]] });
+    const items = await NavItem.findAll({
+        where: { placement: "main" },
+        order: [["displayOrder", "ASC"], ["id", "ASC"]],
+    });
 
     const topLevel = items.filter((item) => item.parentId === null);
     return topLevel.map((item) => ({
@@ -37,6 +42,14 @@ export const getNavTree = cache(async (): Promise<NavNode[]> => {
                 link: child.link,
             })),
     }));
+});
+
+export const getTopBarLinks = cache(async (): Promise<TopBarLink[]> => {
+    const items = await NavItem.findAll({
+        where: { placement: "topbar" },
+        order: [["displayOrder", "ASC"], ["id", "ASC"]],
+    });
+    return items.map((item) => ({ id: item.id, title: item.title, link: item.link }));
 });
 
 export const getActiveSlides = cache(async () => {
@@ -132,4 +145,22 @@ export const getPublicDownloads = cache(async () => {
         order: [["id", "DESC"]],
     });
     return items.map((d) => d.toJSON());
+});
+
+// Admission context for /apply-now: the single active session (if it is open)
+// and the programs currently open for admission.
+export const getAdmissionContext = cache(async () => {
+    const session = await AdmissionSession.findOne({ where: { isActive: true, isOpenForAdmission: true } });
+    if (!session) return { session: null, programs: [] };
+
+    const programs = await AcademicProgram.findAll({
+        where: { isOpenForAdmission: true },
+        attributes: ["id", "name", "type"],
+        order: [["type", "ASC"], ["name", "ASC"]],
+    });
+
+    return {
+        session: { id: session.id, sessionName: session.sessionName, code: session.code },
+        programs: programs.map((p) => ({ id: p.id, name: p.name, type: p.type })),
+    };
 });

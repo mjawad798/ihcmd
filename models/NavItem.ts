@@ -5,6 +5,7 @@ export class NavItem extends Model<InferAttributes<NavItem>, InferCreationAttrib
     declare id: CreationOptional<number>;
     declare title: string;
     declare type: "direct" | "submenu";
+    declare placement: CreationOptional<"main" | "topbar">;
     declare link: string | null;
     declare parentId: number | null;
     declare displayOrder: CreationOptional<number>;
@@ -27,6 +28,11 @@ NavItem.init(
             type: DataTypes.ENUM("direct", "submenu"),
             allowNull: false,
             defaultValue: "direct",
+        },
+        placement: {
+            type: DataTypes.ENUM("main", "topbar"),
+            allowNull: false,
+            defaultValue: "main",
         },
         link: {
             type: DataTypes.STRING,

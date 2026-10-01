@@ -128,6 +128,7 @@ export default function RolesAdminPage() {
                 <p className="text-center text-gray-400 py-10">You do not have permission to view this page.</p>
             ) : (
                 <div className="bg-white rounded-xl border border-gray-200 overflow-hidden">
+                    <div className="overflow-x-auto">
                     <table className="w-full text-sm">
                         <thead className="bg-gray-50 text-gray-500 uppercase text-xs">
                             <tr>
@@ -177,6 +178,7 @@ export default function RolesAdminPage() {
                             ))}
                         </tbody>
                     </table>
+                    </div>
                 </div>
             )}
 
@@ -207,6 +209,7 @@ export default function RolesAdminPage() {
                             <div>
                                 <label className="block text-sm font-medium text-gray-700 mb-2">Permissions</label>
                                 <div className="border border-gray-200 rounded-lg overflow-hidden">
+                                  <div className="overflow-x-auto">
                                     <table className="w-full text-sm">
                                         <thead className="bg-gray-50 text-gray-500 uppercase text-xs">
                                             <tr>
@@ -235,6 +238,7 @@ export default function RolesAdminPage() {
                                             ))}
                                         </tbody>
                                     </table>
+                                  </div>
                                 </div>
                             </div>
 

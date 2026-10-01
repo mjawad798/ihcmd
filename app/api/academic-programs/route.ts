@@ -39,6 +39,7 @@ export async function POST(request: NextRequest) {
         name,
         description,
         picture: picturePath,
+        isOpenForAdmission: formData.get("isOpenForAdmission") === "true",
     });
 
     return NextResponse.json(program, { status: 201 });

@@ -1,7 +1,6 @@
 "use client";
 import Link from 'next/link';
 import React, { useState, useEffect } from 'react';
-import { BsFacebook, BsInstagram, BsWhatsapp } from 'react-icons/bs';
 import { FaBars, FaChevronDown } from 'react-icons/fa';
 import {
     Sheet,
@@ -12,7 +11,7 @@ import {
 } from "@/components/ui/sheet";
 import Image from 'next/image';
 import { Cormorant_Garamond } from 'next/font/google';
-import type { NavNode } from '@/lib/queries';
+import type { NavNode, TopBarLink } from '@/lib/queries';
 
 const sloganFont = Cormorant_Garamond({
     subsets: ['latin'],
@@ -20,7 +19,7 @@ const sloganFont = Cormorant_Garamond({
     style: ['italic'],
 });
 
-const NavbarClient = ({ navItems }: { navItems: NavNode[] }) => {
+const NavbarClient = ({ navItems, topBarLinks }: { navItems: NavNode[], topBarLinks: TopBarLink[] }) => {
     const [scrolled, setScrolled] = useState(false);
     const [openMobileId, setOpenMobileId] = useState<number | null>(null);
 
@@ -68,14 +67,16 @@ const NavbarClient = ({ navItems }: { navItems: NavNode[] }) => {
                     </div>
                 )}
 
-                {/* Right Area: Socials & Mobile Menu */}
+                {/* Right Area: Top Bar Links & Mobile Menu */}
                 <div className="flex items-center gap-4 z-10">
-                    {/* Right Social Icons - hidden once scrolled */}
-                    {!scrolled && (
-                        <div className="hidden md:flex items-center gap-4">
-                            <SocialIcon href="https://www.facebook.com/profile.php?id=61561587194639" icon={<BsFacebook size={22} />} hoverColor="hover:text-blue-600 hover:bg-blue-50" />
-                            <SocialIcon href="https://www.instagram.com/ihcmdpeshawar?igsh=MThtbHE3MjF0d255cg==" icon={<BsInstagram size={22} />} hoverColor="hover:text-pink-600 hover:bg-pink-50" />
-                            <SocialIcon href="https://wa.me/923313400091" icon={<BsWhatsapp size={22} />} hoverColor="hover:text-green-600 hover:bg-green-50" />
+                    {/* Right Top Bar Links - hidden once scrolled */}
+                    {!scrolled && topBarLinks.length > 0 && (
+                        <div className="hidden md:flex items-center gap-2">
+                            {topBarLinks.map((item) => (
+                                <TopBarLinkItem key={item.id} href={item.link ?? '#'}>
+                                    {item.title}
+                                </TopBarLinkItem>
+                            ))}
                         </div>
                     )}
 
@@ -109,6 +110,16 @@ const NavbarClient = ({ navItems }: { navItems: NavNode[] }) => {
                                                 {item.title}
                                             </MobileNavLink>
                                         )
+                                    )}
+                                    {topBarLinks.length > 0 && (
+                                        <>
+                                            <div className="border-t border-slate-200 my-2" />
+                                            {topBarLinks.map((item) => (
+                                                <MobileNavLink key={item.id} href={item.link ?? '#'}>
+                                                    {item.title}
+                                                </MobileNavLink>
+                                            ))}
+                                        </>
                                     )}
                                 </nav>
                             </SheetContent>
@@ -188,11 +199,18 @@ const DropdownItem = ({ href, children }: { href?: string, children: React.React
     );
 };
 
-const SocialIcon = ({ href, icon, hoverColor }: { href: string, icon: React.ReactNode, hoverColor: string }) => (
-    <Link href={href} target="_blank" rel="noopener noreferrer" className={`p-2 text-slate-500 transition-all duration-300 ${hoverColor}`}>
-        {icon}
-    </Link>
-);
+const TopBarLinkItem = ({ href, children }: { href: string, children: React.ReactNode }) => {
+    const external = /^https?:\/\//.test(href);
+    return (
+        <Link
+            href={href}
+            {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+            className="px-3 py-1.5 text-sm font-semibold tracking-wide text-navy-800 border-l border-slate-200 first:border-l-0 hover:text-gold-600 transition-colors"
+        >
+            {children}
+        </Link>
+    );
+};
 
 const MobileNavLink = ({ href, children }: { href: string, children: React.ReactNode }) => (
     <Link href={href} className="block px-4 py-3 text-sm font-semibold text-slate-700 hover:bg-gold-50 hover:text-navy-900 transition-colors">
